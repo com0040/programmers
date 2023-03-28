@@ -1,0 +1,10 @@
+def solution(citations):
+    citations.sort() # 리스트를 오름차순으로 정렬
+    h_index = 0
+    for i in range(len(citations)):
+     # 인용된 횟수가 h_index보다 크거나 같은 논문이 h_index개 이상인 경우
+        if citations[i] >= len(citations) - i:
+            h_index = len(citations) - i
+            break
+    return h_index
+print(solution([3,0,6,1,5]))
