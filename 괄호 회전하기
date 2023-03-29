@@ -1,0 +1,28 @@
+# v2
+def solution(s):
+    answer =0
+    s2 = s[-1] + s[:-1] # 하나 밀고 시작
+    # print(s2)
+    while s != s2: # 하나씩 밀면서 처음으로 돌아오는지 확인
+        stack = [] # 빈스택 선언
+        s2 = s2[-1] + s2[:-1] # 읏차
+        # print(s2,end=' ') # 확인
+        for idx,i in enumerate(s2): # 확인용 enumerate
+            # print(idx,stack,end=' ') # 찍어보기
+            if i == '(' or i == '[' or i =='{': # 여는 괄호
+                stack.append(i) # 추가
+            elif not stack: # 스택이 비었다는 것은 닫는 괄호로 시작한다는 뜻
+                stack.append(i) # 빈 스택일 때 answer 값을 추가 할 예정
+                break # 끝까지 안가도 되니 나가자
+            if (stack[-1]== '[' and i ==']') or (stack[-1]== '{' and i =='}'
+            # 직전에 여는 괄호 지금 닫는 괄호 일 경우
+                    ) or (stack[-1]== '(' and i ==')'):
+                stack.pop() # 스택에 넣지 않고 있던 요소 제거(pop()=가장 오른쪽 제거)
+        # print(stack) # 확인용
+        if len(stack) == 0: # 스텍이 모두 제거됫다 = 쌍이 맞는다
+            answer +=1 # 쌍이 맞을 때 =1
+    return answer # 왼쪽으로 밀어서 원래 문자열이 됫을 때 while 종료 후 answer 반환
+print(solution('[](){}'))
+print(solution('}]()[{'))
+print(solution('[)(]'))
+print(solution('}}}}'))
