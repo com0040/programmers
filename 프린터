@@ -1,0 +1,14 @@
+def solution(priorities, location):
+    answer = 0
+    sorted_priorities = sorted(priorities, reverse=True) # 우선순위를 역순으로 정렬한 리스트
+    queue = [(i, p) for i, p in enumerate(priorities)] # (위치, 우선순위)를 저장한 튜플의 리스트
+    while queue:
+        cur = queue.pop(0) # 가장 앞에 있는 작업을 꺼냄
+        if cur[1] == sorted_priorities[0]: # 현재 작업의 우선순위가 가장 높은 경우
+            answer += 1 # 출력한 작업의 개수를 증가
+            sorted_priorities.pop(0) # 가장 높은 우선순위를 제거
+            if cur[0] == location: # 출력한 작업이 원하는 작업인 경우
+                return answer # 출력한 작업의 개수 반환
+        else: # 현재 작업의 우선순위가 가장 높은 경우가 아닌 경우
+            queue.append(cur) # 가장 뒤로 이동시킴
+    return answer # 모든 작업을 출력한 경우, 출력한 작업의 개수 반환
