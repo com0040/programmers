@@ -1,0 +1,17 @@
+def solution(prices):
+    n = len(prices)
+    answer = [0] * n
+    stack = [0] # 스택에는 인덱스가 저장됩니다.
+    for i in range(1, n):
+        while stack and prices[stack[-1]] > prices[i]:
+            # 현재 시점의 가격이 이전 가격보다 작다면,
+            # 이전 가격이 떨어진 것이므로, 스택에서 pop합니다.
+            j = stack.pop()
+            answer[j] = i - j # 가격이 떨어진 시간을 계산합니다.
+        stack.append(i) # 현재 시점을 스택에 추가합니다.
+    while stack:
+        # 스택에 남아있는 시점들은 가격이 떨어지지 않은 것이므로,
+        # 가격이 떨어지지 않은 시간을 계산하여 결과 리스트에 추가합니다.
+        j = stack.pop()
+        answer[j] = n - j - 1
+    return answer
