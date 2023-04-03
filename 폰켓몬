@@ -1,0 +1,10 @@
+def solution(nums):
+    answer = 0
+    ln_nm = len(nums)//2
+    set_nm = len(set(nums))
+    if ln_nm < set_nm:
+        answer = ln_nm
+    if set_nm <= ln_nm:
+        answer = set_nm
+    print(ln_nm, set_nm)
+    return answer
