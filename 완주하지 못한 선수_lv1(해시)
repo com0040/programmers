@@ -1,0 +1,15 @@
+def solution(participant, completion):
+    hash_map = {}
+    # participant 배열의 모든 선수 이름을 해시 맵에 등록
+    for p in participant:
+        if p in hash_map:
+            hash_map[p] += 1
+        else:
+            hash_map[p] = 1
+    # completion 배열의 모든 선수 이름을 해시 맵에서 찾아서 등장 횟수 감소
+    for c in completion:
+        hash_map[c] -= 1
+    # 해시 맵에서 값이 0이 아직 남아있는 key 반환
+    for key, value in hash_map.items():
+        if value != 0:
+            return ke
