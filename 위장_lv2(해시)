@@ -1,0 +1,17 @@
+https://school.programmers.co.kr/learn/courses/30/lessons/42578
+
+from collections import defaultdict
+
+def solution(clothes):
+    answer = 1
+    hash = defaultdict(list)
+    for i in clothes:
+        hash[i[1]].append(i[0])
+    
+    for key in hash:
+        answer *= len(hash[key]) + 1
+    
+    return answer - 1
+
+print(solution([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]])) # 5
+print(solution([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]])) # 3
